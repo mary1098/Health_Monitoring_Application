@@ -1,0 +1,170 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Health Monitoring App</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css">
+    <style>
+        @keyframes fadeIn {
+            from {
+                opacity: 0;
+                transform: translateY(-20px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+        
+        @keyframes bounce {
+            0%, 100% {
+                transform: translateY(0);
+            }
+            50% {
+                transform: translateY(-10px);
+            }
+        }
+
+        body {
+            font-family: 'Roboto', sans-serif;
+            background-color: #f0f2f5;
+            margin: 0;
+            padding: 20px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+        }
+        
+        #app {
+            max-width: 600px;
+            background: #fff;
+            padding: 20px;
+            border-radius: 10px;
+            box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+            text-align: center;
+        }
+
+        #logo {
+            font-size: 50px;
+            color: #e43617;
+            margin-top: 100px;
+            animation: bounce 1.6s infinite;
+        }
+        
+        h1, h2 {
+            color: #007bff;
+            animation: fadeIn 1s ease-out;
+        }
+        
+        h1 {
+            margin-bottom: 20px;
+        }
+        
+        input, textarea, select {
+            width: calc(100% - 22px);
+            padding: 10px;
+            margin: 10px 0;
+            border: 1px solid #ddd;
+            border-radius: 5px;
+            font-size: 16px;
+        }
+        
+        button {
+            padding: 15px;
+            background-color: #28a745;
+            color: #fff;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            width: 90%;
+            font-size: 16px;
+            margin-top: 10px;
+            transition: background-color 0.3s;
+        }
+        
+        button:hover {
+            background-color: #218838;
+        }
+        
+        #plans {
+            margin-top: 20px;
+        }
+        
+        .form-section {
+            margin-bottom: 20px;
+        }
+
+        .input-section {
+            margin-bottom: 20px;
+            background-color: #f1f1ea;
+            width: 32rem;
+        }
+
+        #gender {
+            width: 33.5rem;
+            background-color: #f1f1ea;
+            border: 1px solid #ddd;
+        }
+        
+        .icon {
+            margin-right: 8px;
+        }
+
+        #heading {
+            color: #1b73d8;
+        }
+
+        #sub-heading {
+            color: #000000;
+        }
+
+        #notification {
+            color: green;
+            font-size: 18px;
+            margin-top: 20px;
+        }
+
+    </style>
+</head>
+<body>
+    <div id="app">
+        <div id="logo">
+            <i class="fas fa-heartbeat"></i>
+        </div>
+        <h1 id="heading">Health Monitoring</h1>
+        <div id="user-form" class="form-section">
+            <h2 id="sub-heading">Create User Profile</h2>
+            <input class="input-section" type="text" id="name" placeholder="Name">
+            <input class="input-section" type="number" id="age" placeholder="Age">
+            <select id="gender">
+                <option value="" disabled selected>Select Gender</option>
+                <option value="male">Male</option>
+                <option value="female">Female</option>
+            </select>
+            <input class="input-section" type="number" id="weight" placeholder="Weight (kg)">
+            <input class="input-section" type="number" id="height" placeholder="Height (cm)">
+            <button class="button" onclick="createUserProfile()">
+                <i class="fas fa-user-plus icon"></i>Create Profile
+            </button>
+        </div>
+        <div id="query-form" class="form-section">
+            <h2 id="sub-heading">Describe Symptoms</h2>
+            <textarea class="input-section" id="symptom" placeholder="Describe your symptoms..."></textarea>
+            <button onclick="submitSymptom()">
+                <i class="fas fa-notes-medical icon"></i>Submit Symptom
+            </button>
+        </div>
+        <div id="suggestions" class="form-section">
+            <h2 id="sub-heading">Health Suggestions</h2>
+            <button onclick="getHealthPlan()">
+                <i class="fas fa-heartbeat icon"></i>Get Health Plan
+            </button>
+            <div id="plans"></div>
+        </div>
+    </div>
+    <script src="{% static 'js/app.js' %}"></script>
+</body>
+</html>
